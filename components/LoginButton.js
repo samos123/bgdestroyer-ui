@@ -15,7 +15,7 @@ export default function LoginButton() {
         <Popover id="popover-basic">
             <Popover.Header>
                 Login to your account
-                <a tabindex="0" onClick={() => document.body.click()}>
+                <a onClick={() => document.body.click()}>
                 <FontAwesomeIcon
                     className="p-2 float-end"
                     icon={faX}

@@ -62,7 +62,7 @@ function VerifyEmail() {
                 <p>
                     Follow the instruction in the email to verify your account
                 </p>
-                <p>Didn't receive the email yet? You can resend it below</p>
+                <p>Didn{"'"}t receive the email yet? You can resend it below</p>
                 <Button onClick={resendEmailVerification} disabled={timeActive}>
                     Resend Email {timeActive && "in " + time + " seconds"}
                 </Button>
