@@ -1,0 +1,39 @@
+# API and Documentation
+
+The following API endpoint can be called to remove the background from an
+image:
+
+**URL** : `https://api.bgdestroyer.com/remove`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Data constraints**
+
+Expecting a `multipart/form-data` request with `file` being the name of the
+parameter that should contain an image file.
+
+
+**Data example**
+
+```
+------WebKitFormBoundary9p08CEXO7JpIZzWh
+Content-Disposition: form-data; name="file"; filename="test-bg-removal.png"
+Content-Type: image/png
+
+
+------WebKitFormBoundary9p08CEXO7JpIZzWh--
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+The body content will be binary data of a PNG that has transparent background.
+
+## CURL example to upload image and store png
+Run the following command:
+```
+curl -F 'file=@demo.jpg' https://api.bgdestroyer.com/remove > test.png
+```
