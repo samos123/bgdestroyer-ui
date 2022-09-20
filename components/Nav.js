@@ -36,7 +36,7 @@ export default function Nav() {
 
                 {user && (
                     <ul className="nav nav-pills user-nav">
-                        <NavItem url="/profile">Account Settings</NavItem>
+                        <NavItem url="/profile" activeClassName="">Account Settings</NavItem>
                         <Button variant="outline-primary" onClick={logOut}>
                             Logout
                         </Button>
