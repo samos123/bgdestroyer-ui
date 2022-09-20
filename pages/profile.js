@@ -7,7 +7,7 @@ export default function Profile() {
     if (user) {
     return (
         <div className="center">
-            <p>Hello {user.email}</p>
+            <p>Hello {user.email}. Settings will be available at a later time. Work in progres..</p>
         </div>
     );
     }
