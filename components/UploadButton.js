@@ -12,6 +12,7 @@ import apiUpload from "../lib/api-upload";
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 export default function UploadButton() {
+    const [key, setKey] = useState(1);
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     const [loading, setLoading] = useState("");
@@ -22,21 +23,24 @@ export default function UploadButton() {
         const formData = new FormData();
         formData.append("file", file, file.name);
         setLoading(file.name);
-        setError("")
+        setError("");
         apiUpload(formData)
             .then((response) => {
                 setImage(response);
                 setLoading("");
             })
             .catch((error) => {
-                console.log(error)
-                let errorMsg = error.message
+                console.log(error);
+                let errorMsg = error.message;
                 if (error.response && error.response.data) {
-                    const res = JSON.parse(Buffer.from(error.response.data).toString('utf8'))
-                    errorMsg += ": " + res.error
+                    const res = JSON.parse(
+                        Buffer.from(error.response.data).toString("utf8")
+                    );
+                    errorMsg += ": " + res.error;
                 }
                 setError(errorMsg);
                 setLoading("");
+                setKey(key + 1);
             });
     };
 
@@ -44,6 +48,7 @@ export default function UploadButton() {
         <Card bg="light" border="primary" className="text-center">
             <FileUploader
                 handleChange={handleChange}
+                key={key}
                 classes="mt-3 pb-3"
                 name="file"
                 types={fileTypes}
