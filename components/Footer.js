@@ -52,7 +52,7 @@ const Footer = () => {
                                     className="text-muted"
                                     target="_blank"
                                     rel="noreferrer"
-                                    href="https://www.producthunt.com/posts/bgdestroyer"
+                                    href="https://www.producthunt.com/posts/bgdestroyer-com-background-removal"
                                 >
                                     ProductHunt
                                 </a>
