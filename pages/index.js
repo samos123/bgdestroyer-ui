@@ -19,10 +19,10 @@ export default function Home() {
                     <div className="row">
                         <div className="col-6">
                             {" "}
-                            <Image layout="responsive" src={demo} />
+                            <Image priority layout="responsive" src={demo} />
                         </div>
                         <div className="col-6">
-                            <Image layout="responsive" src={demo_removed} />
+                            <Image priority layout="responsive" src={demo_removed} />
                         </div>
                     </div>
                 </div>
