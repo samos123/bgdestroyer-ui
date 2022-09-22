@@ -24,7 +24,7 @@ function VerifyEmail() {
                     alert(err.message);
                 });
         }, 1000);
-    }, [user]);
+    }, [user, router]);
 
     useEffect(() => {
         let interval = null;

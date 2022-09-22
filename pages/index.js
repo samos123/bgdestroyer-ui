@@ -14,20 +14,33 @@ export default function Home() {
                         Remove Image Background
                     </h1>
                     <p className="lead">
-                        Free online tool to remove the background from your image automatically. See example of the tool in action:
+                        Free online tool to remove the background from your
+                        image automatically. See example of the tool in action:
                     </p>
                     <div className="row">
                         <div className="col-6">
                             {" "}
-                            <Image priority layout="responsive" src={demo} />
+                            <Image
+                                priority
+                                layout="responsive"
+                                src={demo}
+                                alt="demo picture with background"
+                            />
                         </div>
                         <div className="col-6">
-                            <Image priority layout="responsive" src={demo_removed} />
+                            <Image
+                                priority
+                                layout="responsive"
+                                src={demo_removed}
+                                alt="demo picture with background removed"
+                            />
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-5 text-center">
-                    <h2 className="pb-3">Try it now for <b>free</b></h2>
+                    <h2 className="pb-3">
+                        Try it now for <b>free</b>
+                    </h2>
                     <UploadButton />
                 </div>
             </div>
