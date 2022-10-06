@@ -24,7 +24,7 @@ export default function Pricing() {
                                     </small>
                                 </h1>
                                 <ul className="list-unstyled mt-3 mb-4">
-                                    <li>2 credits per month</li>
+                                    <li>5 credits per month</li>
                                     <li>API Access</li>
                                 </ul>
                             </div>
