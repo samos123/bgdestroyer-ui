@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Nav from 'react-bootstrap/Nav';
 import { useRouter } from "next/router";
 
 export default function NavItem({url, children, activeClassName = 'active'}) {
     const router = useRouter();
     return (
-        <li className="nav-item">
+        <Nav.Item>
             <Link href={url} passHref>
                 <a
                     className={
@@ -15,6 +16,6 @@ export default function NavItem({url, children, activeClassName = 'active'}) {
                     {children}
                 </a>
             </Link>
-        </li>
+        </Nav.Item>
     );
 }

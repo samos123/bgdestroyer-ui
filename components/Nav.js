@@ -1,48 +1,66 @@
 import Link from "next/link";
 import NavItem from "./NavItem.js";
-
+import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { auth, logOut } from "../lib/initFirebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 import LoginButton from "./LoginButton";
 import SignUpButton from "./SignUpButton";
 
-export default function Nav() {
+export default function Navigation() {
     const [user, loading, error] = useAuthState(auth);
 
     return (
-        <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <Link href="/" passHref>
-                <a className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <span className="fs-4">bgdestroyer</span>
-                </a>
-            </Link>
-            <ul className="col-6 nav nav-pills">
-                <NavItem url="/">Home</NavItem>
-                <NavItem url="/pricing">Pricing</NavItem>
-                <NavItem url="/api-docs">API & Docs</NavItem>
-            </ul>
-            <div className="col-4">
-                {user === null && loading == false && (
-                    <ul className="col-6 nav nav-pills user-nav">
-                        <NavItem url="/signup" activeClassName="">
-                            <Button variant="outline-success">Sign Up</Button>
-                        </NavItem>
-                        <li className="nav-item nav-link">
-                            <LoginButton />
-                        </li>
-                    </ul>
-                )}
+        <header className="py-3 mb-4 border-bottom">
+            <Navbar variant="light" sticky="top" expand="lg" collapseOnSelect>
+                <Container>
+                    <Navbar.Brand>
+                        <Link href="/" passHref>
+                            <span className="fs-4">bgdestroyer</span>
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="offset-lg-1" variant="pills">
+                            {/*<ul className="col-6 nav nav-collapse collapse nav-pills"> */}
+                            <NavItem url="/">Home</NavItem>
+                            <NavItem url="/pricing">Pricing</NavItem>
+                            <NavItem url="/api-docs">API & Docs</NavItem>
 
-                {user && (
-                    <ul className="nav nav-pills user-nav">
-                        <NavItem url="/profile" activeClassName="">Account Settings</NavItem>
-                        <Button variant="outline-primary" onClick={logOut}>
-                            Logout
-                        </Button>
-                    </ul>
-                )}
-            </div>
+                        </Nav>
+                        <Nav className="offset-lg-1" variant="pills">
+                            {user === null && loading == false && (
+                                <>
+                                    <NavItem url="/signup" activeClassName="">
+                                        <Button variant="outline-success">
+                                            Sign Up
+                                        </Button>
+                                    </NavItem>
+                                    <li className="nav-item nav-link">
+                                        <LoginButton />
+                                    </li>
+                                </>
+                            )}
+
+                            {user && (
+                                <>
+                                    <NavItem url="/profile" activeClassName="">
+                                        Account Settings
+                                    </NavItem>
+                                    <Button
+                                        variant="outline-primary"
+                                        onClick={logOut}
+                                    >
+                                        Logout
+                                    </Button>
+                                </>
+                            )}
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </header>
     );
 }

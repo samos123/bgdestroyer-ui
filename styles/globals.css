@@ -15,7 +15,6 @@ a {
     box-sizing: border-box;
 }
 
-
 .divider:after,
 .divider:before {
     content: "";
@@ -32,7 +31,20 @@ a {
     width: 40px;
 }
 
-
 .nav-pills button.active {
     background-color: none;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out;
 }
