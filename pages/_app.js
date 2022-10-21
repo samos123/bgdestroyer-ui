@@ -10,6 +10,14 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }) {
     return (
         <>
+            <Head>
+                <meta name="robots" content="index, follow" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                <meta charSet="UTF-8" />
+            </Head>
             <Script
                 id="bootstrap-cdn"
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -8,6 +8,13 @@ import demo_removed from "../public/demo-removed.jpg";
 export default function Home() {
     return (
         <>
+            <Head>
+                <title>Remove background from images online</title>
+                <meta
+                    name="description"
+                    content="Automatically remove the background from images online for free with the power of AI. Upload an image online and get the background removed right away."
+                />
+            </Head>
             <div className="row g-5 py-5">
                 <div className="col-lg-7">
                     <h1 className="display-5 fw-bold lh-1 mb-3">
