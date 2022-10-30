@@ -41,7 +41,13 @@ function VerifyEmail() {
     }, [timeActive, time, setTimeActive]);
 
     const resendEmailVerification = () => {
-        sendEmailVerification(user)
+        window.gtag("event", "send-verification-email", {
+            event_category: "engagement",
+            non_interaction: true,
+        });
+        sendEmailVerification(user, {
+            url: window.location.protocol + "//" + window.location.host,
+        })
             .then(() => {
                 setTimeActive(true);
             })

@@ -22,12 +22,20 @@ export default function UploadButton() {
         setFile(file);
         const formData = new FormData();
         formData.append("file", file, file.name);
+        window.gtag("event", "uploading", {
+            event_category: "engagement",
+            event_label: file.filename,
+        });
         setLoading(file.name);
         setError("");
         apiUpload(formData)
             .then((response) => {
                 setImage(response);
                 setLoading("");
+                window.gtag("event", "upload", {
+                    event_category: "engagement",
+                    event_label: file.filename,
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -38,6 +46,10 @@ export default function UploadButton() {
                     );
                     errorMsg += ": " + res.error;
                 }
+                gtag("event", "exception", {
+                    description: errorMsg,
+                    fatal: false,
+                });
                 setError(errorMsg);
                 setLoading("");
                 setKey(key + 1);

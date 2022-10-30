@@ -1,13 +1,33 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import Script from "next/script";
 import Layout from "../components/Layout.js";
 import "../styles/globals.css";
+import { pageview } from "../lib/ga";
 
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
+    const router = useRouter();
+
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            pageview(url);
+        };
+        //When the component is mounted, subscribe to router changes
+        //and log those page views
+        router.events.on("routeChangeComplete", handleRouteChange);
+
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange);
+        };
+    }, [router.events]);
+
     return (
         <>
             <Head>
@@ -24,9 +44,6 @@ function MyApp({ Component, pageProps }) {
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                 crossOrigin="anonymous"
             />
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
             {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
                 <>
                     <Script
@@ -36,16 +53,20 @@ function MyApp({ Component, pageProps }) {
 
                     <Script id="google-analytics" strategy="lazyOnload">
                         {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-                `}
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                          page_path: window.location.pathname,
+                        });
+                        `}
                     </Script>
                 </>
             )}
+
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </>
     );
 }

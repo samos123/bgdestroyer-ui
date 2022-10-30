@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import SignUpForm from "../components/SignUpForm";
 import { auth } from "../lib/initFirebase.js";
-import {
-    sendEmailVerification,
-} from "firebase/auth";
+import { sendEmailVerification } from "firebase/auth";
 
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -14,19 +12,23 @@ export default function SignUp() {
     const [emailError, setEmailError] = useState("");
 
     if (user && !user.emailVerified) {
-        sendEmailVerification(auth.currentUser)
+        sendEmailVerification(user, {
+            url: window.location.protocol + "//" + window.location.host,
+        })
             .then(() => {
                 router.push("/verify-email");
             })
             .catch((err) => setEmailError(err.message));
         if (error) {
-            return <p>Error sending verification email: {emailError}.</p>
+            return <p>Error sending verification email: {emailError}.</p>;
         }
-        return <p>Verification email has been sent. Please verify your email.</p>
+        return (
+            <p>Verification email has been sent. Please verify your email.</p>
+        );
     }
 
     if (user) {
-        router.push("/")
+        router.push("/");
         return <p>Already logged in. Redirecting to home.</p>;
     }
     if (loading) {

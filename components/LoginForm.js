@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { auth } from "../lib/initFirebase.js";
 import {
@@ -33,10 +33,16 @@ export default function LoginForm() {
         console.log(e);
         e.preventDefault();
         console.log("Logging in user");
+        window.gtag("event", "login");
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 if (!auth.currentUser.emailVerified) {
-                    sendEmailVerification(auth.currentUser)
+                    sendEmailVerification(auth.currentUser, {
+                        url:
+                            window.location.protocol +
+                            "//" +
+                            window.location.host,
+                    })
                         .then(() => {
                             router.push("/verify-email");
                         })
@@ -70,7 +76,13 @@ export default function LoginForm() {
                         placeholder="Password"
                         type="password"
                     />
-                    <p className="mt-2"><Link href="/reset-password"><a className="link-primary">Forgot your password? Reset it</a></Link></p>
+                    <p className="mt-2">
+                        <Link href="/reset-password">
+                            <a className="link-primary">
+                                Forgot your password? Reset it
+                            </a>
+                        </Link>
+                    </p>
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button
@@ -113,9 +125,14 @@ export default function LoginForm() {
                         />
                         Login with GitHub
                     </Button>
-                    <p>Don{"'"}t have an account? <Link href="/signup"><a className="link-primary">Click here to Sign Up</a></Link></p>
-
-
+                    <p>
+                        Don{"'"}t have an account?{" "}
+                        <Link href="/signup">
+                            <a className="link-primary">
+                                Click here to Sign Up
+                            </a>
+                        </Link>
+                    </p>
                 </div>
             </Form>
         </div>
