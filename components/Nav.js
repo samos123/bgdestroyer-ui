@@ -1,5 +1,8 @@
 import Link from "next/link";
+import logo from "../public/logo-blue.png";
+import Image from "next/image";
 import NavItem from "./NavItem.js";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
@@ -13,14 +16,22 @@ export default function Navigation() {
     const [user, loading, error] = useAuthState(auth);
 
     return (
-        <header className="py-3 mb-4 border-bottom">
+        <header className="py-0 mb-3 border-bottom">
             <Navbar variant="light" sticky="top" expand="lg" collapseOnSelect>
                 <Container>
-                    <Navbar.Brand>
-                        <Link href="/" passHref>
-                            <span className="fs-4">bgdestroyer</span>
-                        </Link>
-                    </Navbar.Brand>
+                    <Col lg={3} xs={7}>
+                        <Navbar.Brand className="p-0 m-0">
+                            <Link href="/" passHref>
+                                <Image
+                                    src={logo}
+                                    layout="responsive"
+                                    width={1492}
+                                    height={416}
+                                    alt="logo"
+                                />
+                            </Link>
+                        </Navbar.Brand>
+                    </Col>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="offset-lg-1" variant="pills">
@@ -28,7 +39,6 @@ export default function Navigation() {
                             <NavItem url="/">Home</NavItem>
                             <NavItem url="/pricing">Pricing</NavItem>
                             <NavItem url="/api-docs">API & Docs</NavItem>
-
                         </Nav>
                         <Nav className="offset-lg-1" variant="pills">
                             {user === null && loading == false && (
