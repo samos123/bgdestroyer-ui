@@ -39,6 +39,7 @@ export default function Navigation() {
                             <NavItem url="/">Home</NavItem>
                             <NavItem url="/pricing">Pricing</NavItem>
                             <NavItem url="/api-docs">API & Docs</NavItem>
+                            <NavItem url="/contact">Contact</NavItem>
                         </Nav>
                         <Nav className="offset-lg-1" variant="pills">
                             {user === null && loading == false && (
