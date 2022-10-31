@@ -22,13 +22,18 @@ export default function SignUpForm() {
         auth
     );
 
-    const signUpWithGithub = () => {
+    const gtagSignUp = () => {
+        window.gtag('event', 'conversion', {'send_to': 'AW-11008040441/fLE7CIul5oAYEPm7hYEp'});
         window.gtag("event", "sign_up");
+    }
+
+    const signUpWithGithub = () => {
+        gtagSignUp()
         signInWithGithub()
     }
 
     const signUpWithGoogle = () => {
-        window.gtag("event", "sign_up");
+        gtagSignUp()
         signInWithGoogle()
     }
 
@@ -42,7 +47,7 @@ export default function SignUpForm() {
     const register = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(email, password);
-        window.gtag("event", "sign_up");
+        gtagSignUp()
     };
 
     return (
