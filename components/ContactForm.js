@@ -18,6 +18,7 @@ export default function ContactForm() {
             subject: `bgdestroyer: ${subject} from ${name}`,
             text: `Email: ${email}\nText: ${text}`,
         };
+        // This posts to a pipedream workflow
         axios
             .post(process.env.NEXT_PUBLIC_CONTACT_URL, data)
             .then((response) => {
