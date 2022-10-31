@@ -104,7 +104,10 @@ export default function LoginForm() {
                     <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => signInWithGoogle()}
+                        onClick={() => {
+                            window.gtag("event", "login");
+                            signInWithGoogle();
+                        }}
                     >
                         <img
                             className="google-icon-login px-2"
@@ -116,7 +119,10 @@ export default function LoginForm() {
                     <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => signInWithGithub()}
+                        onClick={() => {
+                            window.gtag("event", "login");
+                            signInWithGithub();
+                        }}
                     >
                         <FontAwesomeIcon
                             className="px-2"
