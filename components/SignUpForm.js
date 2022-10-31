@@ -21,6 +21,17 @@ export default function SignUpForm() {
     const [signInWithGithub, ghUser, ghLoading, ghError] = useSignInWithGithub(
         auth
     );
+
+    const signUpWithGithub = () => {
+        window.gtag("event", "sign_up");
+        signInWithGithub()
+    }
+
+    const signUpWithGoogle = () => {
+        window.gtag("event", "sign_up");
+        signInWithGoogle()
+    }
+
     const [
         createUserWithEmailAndPassword,
         user,
@@ -77,7 +88,7 @@ export default function SignUpForm() {
                     <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => signInWithGoogle()}
+                        onClick={() => signUpWithGoogle()}
                     >
                         <img
                             className="google-icon px-3"
@@ -89,7 +100,7 @@ export default function SignUpForm() {
                     <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => signInWithGithub()}
+                        onClick={() => signUpWithGithub()}
                     >
                         <FontAwesomeIcon
                             className="px-3"
